@@ -1,0 +1,65 @@
+body{
+  background: #000000 !important;
+}
+input,label {
+  height: 3.125rem;
+  padding: .75rem;
+}
+
+label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0; /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  pointer-events: none;
+  cursor: text; /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+input::-webkit-input-placeholder {
+  color: #ccc !important;
+}
+
+input:-ms-input-placeholder {
+  color: #ccc !important;
+}
+
+input::-ms-input-placeholder {
+  color: #ccc !important;
+}
+
+input::-moz-placeholder {
+  color: #ccc !important;
+}
+
+input::placeholder {
+  color: #ccc !important;
+}
+
+.box-login{
+  background: #FFCC2A;
+  padding: 20px;
+}
+
+.link-esqueceu{
+  color: #000;
+}
+.link-esqueceu:hover{
+  color: #D73135;
+}
+form .row{
+  margin-top: 10px;
+}
+
+h4{
+      font-size: 2rem;
+    letter-spacing: -2px;
+    text-align: center;
+    margin-top: 10px;
+}

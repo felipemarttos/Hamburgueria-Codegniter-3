@@ -1,0 +1,265 @@
+body {background: #eee}
+
+.nav-topo{background: #FFF059 !important;height: 83px;}
+.bem-vindo{margin-top: 12px;color: #999999;}
+.menu-configs{margin-top: 12px;}
+
+label {
+    font-size: 13px;
+    padding-top: 20px;
+    font-weight: normal;
+}
+.titulo_h1 {
+    font-weight: normal;
+    font-size: 20px;
+    color: #0990CE;
+    padding-bottom: 6px;
+}
+.aj_titulo_h1 {
+    font-size: 16px;
+}
+.container2 {
+    background: #ffffff;
+    padding: 20px;
+    border: solid 1px #dddddd;
+}
+.margin-top-20{margin-top: 20px;}
+
+.bg-cinza-borda{
+    background: #F9E1BB;
+    border: solid 1px #F9E1BB;
+    padding: 10px;
+}
+.cinza-borda{
+    border: solid 1px #F9E1BB;
+    padding: 10px;
+}
+
+.ajuste_filtro{
+    margin-top: -20px;
+}
+.btn-azul {
+    background-color: #3e52a1;
+    background-image: linear-gradient(#3e52a1, #2d3277);
+    border: 1px solid #2d3277;
+    box-shadow: 0 1px 0 #7a89e8 inset;
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn-azul:hover {
+    background-color: #4355d2;
+    background-image: linear-gradient(#4355d2, #2f33ae);
+    box-shadow: 0 1px 0 #7a89e8 inset;
+    color: #fff;
+}
+
+
+.text-ml{
+    font-size: 12px;
+}
+.preco-ml{
+    color: #900;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.quantidade-ml{
+    color: #999999;
+    font-size: 12px;
+}
+
+.sem-juros-ml {
+    color: #390;
+    margin-right: 10px;
+}
+
+
+.icon-comment-ml {
+    color: #79a9f5;
+    margin-right: 6px;
+}
+
+
+
+.margin-6{margin-left: 26px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-default-perso-suporte {
+  background: #E64A3E !important;
+}
+
+
+/*personalizacao do menu principal*/
+.navbar{
+  border: none !important;
+  border-radius: 0px !important;
+}
+.navbar-default-perso {
+  background: #087AAF !important;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #ffffff;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #DC0115;
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #DC0115;
+    color: #FFFFFF;
+}
+.navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
+    background-color: #DC0115;
+    color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #DC0115;
+    color: #FFFFFF;
+}
+
+
+
+.tira-margin-top{
+    margin-top: -20px !important;
+}
+
+
+
+
+
+
+
+.brand{
+    padding-top: 10px !important;
+}
+
+.bola-vermelha{
+    border-radius: 10px;
+    padding: 7px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #d40000;
+
+}
+.bola-laranja{
+    border-radius: 10px;
+    padding: 7px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #FCC727;
+
+}
+.bola-verde{
+    border-radius: 10px;
+    padding: 7px;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #6DD826;
+
+}
+
+
+.ajuste-filtro{
+
+}
+
+
+.bs-callout {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    margin: 10px 0;
+    padding: 10px;
+}
+.bs-callout h4 {
+    margin-bottom: 0px;
+    margin-top: 0;
+    font-size:15px;
+    font-weight:normal;
+
+}
+.bs-callout p:last-child {
+    margin-bottom: 0;
+}
+.bs-callout code {
+    border-radius: 3px;
+}
+.bs-callout + .bs-callout {
+    margin-top: -5px;
+}
+.bs-callout-orange {
+    border-left-color: #ECCB71;
+}
+.bs-callout-orange h4 {
+    color: #ECCB71;
+}
+.bs-callout-red {
+    border-left-color: #E05656;
+}
+.bs-callout-red h4 {
+    color: #E05656;
+}
+.bs-callout-default {
+    border-left-color: #ABBAC3;
+}
+.bs-callout-default h4 {
+    color: #ABBAC3;
+}
+.bs-callout-blue {
+    border-left-color: #569ADD;
+}
+.bs-callout-blue h4 {
+    color: #569ADD;
+}
+.bs-callout-cinza {
+    border-left-color: #999999;
+}
+.bs-callout-cinza h4 {
+    color: #999999;
+}
+.bs-callout-verde {
+    border-left-color: #9ECF6A;
+}
+.bs-callout-verde h4 {
+    color: #9ECF6A;
+}

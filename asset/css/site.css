@@ -1,0 +1,181 @@
+body{
+	background: #000 !important;
+}
+
+nav {
+	height: 180px;
+}
+
+.navbar-default {
+    background-color: #FFCC2A !important;
+    border-color: #FFCC2A !important;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    background-color: #D73135 !important;
+    border-color: #D73135  !important;
+}
+.menu{
+	margin-top: 110px;
+    background-color: #D73135 !important;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+
+.navbar-default .navbar-nav > li > a:hover {
+    color: #fff;
+    background-color: #000;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #fff;
+    background-color: #000;
+}
+
+.nav > li > a {
+    padding: 10px 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+
+.box-branco{
+	background: #fff;
+	margin-top: 20px;
+}
+.box-branco-int{
+	padding-top: 20px;
+}
+.barra-endereco{
+	margin-right: 10px;
+	color: #fff;
+	text-align: center;
+}
+
+.bloco-icone{
+	font-size: 40px;
+	color: #FFCC2A;
+}
+
+.redes-sociais{
+	list-style-type: none;
+	margin-left: 0px;
+}
+.redes-sociais li{
+	display: inline;
+}
+.redes-sociais li a{
+	padding:  10px 20px;
+	font-size: 40px;
+}
+
+.redes-sociais li a.ico-instagram {
+	background: #AC3C8E;
+	color: #fff;
+}
+.redes-sociais li a.ico-facebook {
+	background: #406AB2;
+	color: #fff;
+}
+.redes-sociais li a.ico-youtube {
+	background: #E52C27;
+	color: #fff;
+}
+
+.icone-on{
+	color: #0aff0a;
+}
+.icone-off{
+	color: #D90000;
+}
+
+.txt-barra{
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #5D3E21;
+}
+
+
+.txt-barra em{
+	font-size:1.2rem;
+	font-weight: normal;
+
+}
+.txt-barra p{
+	margin: 0px;
+}
+.txt-categorias{
+	font-size: 22px;
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.footer{
+	background: #222;
+	margin-top: 40px;
+	padding-bottom: 40px;
+	padding-top: 40px;
+}
+
+.nav-barras {
+    margin-top: 5px;
+}
+.nav-barras li {
+    border-right: 1px solid #333;
+}
+.no-borda-right{
+	border-right: none !important;
+}
+
+.txt-preco{
+	font-size: 2rem;
+	color: #D73135;
+}
+
+.txt-descricao{
+	font-size: 1.3rem;
+	color: #666;
+}
+
+.input-entrega{
+	margin-top: 30px !important;
+}
+
+.box-laranja{
+	background: #FFCC2A !important;
+	margin-top: 20px !important;
+}
+
+.icone-carrinho{
+	font-size: 35px;
+	margin:10px;
+}
+
+.txt-carrinho{
+	font-size: 2rem;
+	margin:10px;
+}
+.box-login{
+	padding: 40px;
+	margin-left: -30px !important;;
+}
+.box-login2{
+	padding: 40px;
+	padding-bottom: 66px;
+}
+@media screen and (max-width: 767px) {
+  	.no-mobile{
+  		display: none !important;
+	}
+	#navbar.navbar-collapse.collapse.in{
+		float: left  !important;
+	}
+	.txt-barra{
+		font-size: 1.2rem;
+	}
+	.txt-barra em{
+		font-size: 1.2rem;
+	}
+}
