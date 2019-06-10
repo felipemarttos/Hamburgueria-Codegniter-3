@@ -16,4 +16,4 @@ INSERT INTO `tb_produtos` VALUES (1,1,'xbancon','<p>asdsdsd</p>','100619_produto
 
 INSERT INTO `tb_status_pedidos` VALUES (1,'default','AGUARDANDO','Aguardando Confirmação','A','2019-06-08 20:56:01','2019-06-08 23:07:07'),(2,'info','CONFIRMADO','Confirmado','A','2019-06-08 20:58:01','2019-06-08 21:00:22'),(3,'warning','PREPARACAO','Em preparação','A','2019-06-08 21:01:00','2019-06-08 21:01:00'),(4,'primary','SAIUENTREGA','Saiu para entrega','A','2019-06-08 21:01:25','2019-06-08 21:01:25'),(5,'success','FINALIZADO','Finalizado','A','2019-06-08 21:01:37','2019-06-08 21:01:37'),(6,'danger','CANCELADO','Cancelado','A','2019-06-08 21:01:49','2019-06-08 21:01:49');
 
-INSERT INTO `tb_usuarios` VALUES (1,'Valbernielson','adm@adm.com','934b535800b1cba8f96a5d72f72f1611','2019-06-08 19:45:20','2019-04-09 07:23:39','A'));
+INSERT INTO `tb_usuarios` VALUES (1,'Valbernielson','adm@adm.com','934b535800b1cba8f96a5d72f72f1611','2019-06-08 19:45:20','2019-04-09 07:23:39','A');
