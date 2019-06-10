@@ -1,66 +1,36 @@
- <div class="row box-branco">
-	 <div class="col-xs-4 col-sm-4 col-md-4">
-		<div class="row box-branco">
-			 <div class="col-xs-2 col-sm-2 col-md-2">
-			 	<i class="fa fa-circle bloco-icone"></i>
-			</div>
-			 <div class="col-xs-8 col-sm-8 col-md-8">
-			 	Loja Aberta<br />
-			 	<em>Faça seu o pedido</em><br />
-			</div>
-		</div>
-	</div>
-	 <div class="col-xs-4 col-sm-4 col-md-4">
-	 	<div class="row box-branco">
-			<div class="col-xs-2 col-sm-2 col-md-2">
-			 	<i class="fa fa-clock-o bloco-icone"></i>
-			</div>
-			 <div class="col-xs-8 col-sm-8 col-md-8">
-			 	Tempo estima de entrega<br />
-			 	<em><?php echo $configuracoes["tempo_entrega"];?></em><br />
-			</div>
-		</div>
-	</div>
-	<div class="col-xs-4 col-sm-4 col-md-4">
-	 	<div class="row box-branco">
-		 	<div class="col-xs-2 col-sm-2 col-md-2">
-			 	<i class="fa fa-credit-card bloco-icone"></i>
-			</div>
-			 <div class="col-xs-8 col-sm-8 col-md-8">
-			 	Loja Aberta<br />
-			 	<em>Faça seu o pedido</em><br /><br />
-			</div>
-		</div>
-	</div>
-</div>
  <div class="row">
-	 <div class="col-xs-7 col-sm-7 col-md-7 box-branco">
-		<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-		  Link with href
-		</a>
-		<div class="collapse" id="collapseExample">
-		  <div class="well">
-		    ...
-		  </div>
+	 <div class="col-xs-12 col-sm-12 col-md-12 box-branco" style="padding-bottom: 40px;">
+		<h4><?php echo $title;?></h4>
+
+		<?php if (isset($formas) && count($formas) > 0) {?>
+		<div class="row">
+			<div class="col-xs-1 col-sm-1 col-md-4"></div>
+			<div class="col-xs-10 col-sm-10 col-md-4">
+	 			<div class="list-group">
+				<?php foreach ($formas as $key => $rows) {?>
+					<div class="list-group-item">
+						<div class="row">
+							<div class="col-xs-3 col-sm-3 col-md-3">
+								<?php 
+									if (strlen($rows["imagem"]) > 0 ) {
+										$imagem_forma = $rows["imagem"];
+									} else {
+										$imagem_forma = "sem_foto.png";
+									}
+								?>
+								<img class="img-responsive" src="<?php echo base_url('asset/img/formas/'.$imagem_forma);?>" alt="<?php echo $rows["nome"];?>"> 
+							</div>
+							<div class="col-xs-9 col-sm-9 col-md-9">
+								<h4 class="txt-formas"><?php echo $rows["nome"];?></h4>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-xs-1 col-sm-1 col-md-1"></div>
-	<div class="col-xs-4 col-sm-4 col-md-4 box-branco">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		<?php } else {?>
+			<div class="alert alert-warning">Nenhuma forma de pagamento cadastrada.</div>
+		<?php }?>
 	</div>
 </div>
-

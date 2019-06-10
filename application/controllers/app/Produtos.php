@@ -8,8 +8,13 @@ class Produtos extends CI_Controller {
         if (!isset($logged) || $logged != true) {
             redirect(base_url('/app/login/index'));
         }
+        $this->load->model('categoria');
+        $this->load->model('produto');
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA LISTAGEM
+    **
+    */
     public function index()
     {
         $dados["active"]     = "produtos";
@@ -60,6 +65,11 @@ class Produtos extends CI_Controller {
         $this->load->view('app/produtos/index', $dados);
         $this->load->view('layout/app/footer');
     }
+
+      /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE CADASTRO
+    **
+    */
     public function add()
     {
         $dados["active"] = "produtos";
@@ -70,7 +80,10 @@ class Produtos extends CI_Controller {
         $this->load->view('app/produtos/add', $dados);
         $this->load->view('layout/app/footer');
     }
-
+     /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE EDIÇÃO 
+    **
+    */
     public function edit() {
 
         $id = $this->uri->segment(4);
@@ -89,7 +102,10 @@ class Produtos extends CI_Controller {
         $this->load->view('app/produtos/add', $dados);
         $this->load->view('layout/app/footer');
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE EDIÇÃO
+    **
+    */
     public function update() {
         $dados["title"]  = "Editar Produto";
 
@@ -138,7 +154,10 @@ class Produtos extends CI_Controller {
             redirect('/app/produtos/index');
         }
     }
-
+   /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE INSERÇÃO
+    **
+    */
     public function create()
     {
        
@@ -186,7 +205,10 @@ class Produtos extends CI_Controller {
             redirect('/app/produtos/index');
         }
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+    **
+    */
     public function valida($dados, $insert = true)
     {
         $msg_erro = [];
@@ -202,6 +224,10 @@ class Produtos extends CI_Controller {
         return $msg_erro;
     }
 
+    /*
+    ** METODO RESPONSAVEL POR ATIVAR E INATIVAR 
+    **
+    */
     public function status() {
         $data['active'] = 'produtos';
         $id = $this->uri->segment(4);
@@ -224,7 +250,10 @@ class Produtos extends CI_Controller {
         }
 
     }
-
+    /*
+    ** METODO RESPONSAVEL POR REMOVER FORMAS
+    **
+    */
     public function delete() {
         $data['active'] = 'produtos';
         $id = $this->uri->segment(4);
@@ -242,6 +271,10 @@ class Produtos extends CI_Controller {
 
     }
 
+    /*
+    ** METODO RESPONSAVEL POR FAZER O UPLOAD DA IMAGEM PARA SERVIDOR
+    **
+    */
     public function uploadFoto() {
         $pasta = 'asset/img/produtos/';
         if ($_FILES["imagem"]["error"] == UPLOAD_ERR_OK) {

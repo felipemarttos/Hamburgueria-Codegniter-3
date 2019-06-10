@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Comunic |  <?php echo $title;?></title>
+    <title><?php echo $title;?></title>
     <link rel="icon" href="<?php echo base_url('asset/img/favicon.png?v='.date('YmdHis')); ?>" sizes="32x32" />
     <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu" rel="stylesheet">   
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">

@@ -2,9 +2,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-
+    /*
+    ** METODO RESPONSAVEL POR EFETUAR LOGIN
+    **
+    */
     public function index()
     {
+         $this->load->model('usuario');
 
         $dados["programa"] = "login";
         $dados["title"] = "Login - Painel de Controle";
@@ -57,48 +61,15 @@ class Login extends CI_Controller {
 
 
     }
-
+    /*
+    ** METODO RESPONSAVEL POR DESLOGAR 
+    **
+    */
     public function logout() {
         session_destroy();
         redirect('/app/login/index');
     }
 
-    public function recuperar() {
-        $dados["title"]    = "Recuperar Senha";
-        $dados["programa"] = "login";
 
-        if ($this->input->post()) {
-            session_destroy();
-            $dados = $this->input->post();
-            $usuario = Usuario::where([
-                                        ["status", "=", "A"],
-                                        ["email",  "=", $this->input->post('username')]
-                                    ])->first();
-
-            if (!empty($usuario)) {
-                $usuario = $usuario->toArray();
-
-                $this->load->library('email');
-                $this->email->from('felipemarttosputti@gmail.com', 'Your Name');
-                $this->email->to($usuario["email"]);
-
-
-                $this->email->subject('Email Test');
-                $this->email->message('Testing the email class.');
-
-                $this->email->send();
-
-
-
-
-
-            } else {
-                $this->nativesession->set('error', 'E-mail não encontrado.');
-                redirect('/app/login/recuperar');
-            }
-        }
-        $this->load->view('layout/app/header', $dados);
-        $this->load->view('app/login/recuperar', $dados);
-    }
     
 }

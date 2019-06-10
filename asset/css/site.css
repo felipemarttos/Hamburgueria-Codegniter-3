@@ -88,18 +88,18 @@ nav {
 	color: #0aff0a;
 }
 .icone-off{
-	color: #D90000;
+	color: #000;
 }
 
 .txt-barra{
 	font-size: 1.5rem;
 	font-weight: bold;
-	color: #5D3E21;
+	color: #000;
 }
 
 
 .txt-barra em{
-	font-size:1.2rem;
+	font-size: 11px;
 	font-weight: normal;
 
 }
@@ -121,6 +121,8 @@ nav {
 
 .nav-barras {
     margin-top: 5px;
+    margin-left: 0px;
+    margin-right: -18px;
 }
 .nav-barras li {
     border-right: 1px solid #333;
@@ -165,6 +167,59 @@ nav {
 	padding: 40px;
 	padding-bottom: 66px;
 }
+.tar{
+	text-align: right;
+}
+.tac{
+	text-align: center;
+}
+.tal{
+	text-align: left;
+}
+
+.titulo_th{
+	background: #ddd;
+}
+
+.txt-formas{
+	margin-top: 21px;
+}
+
+.box-cliente-top{
+	background: #d90000;
+	padding:10px;
+	color:#fff;
+}
+
+.box-carrinho{
+	margin-top: 0px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.txt-carrinho-totais{
+	font-size: 1.6rem;
+}
+.txt-carrinho-nome{
+	font-size: 1.6rem;
+}
+.txt-carrinho-obs{
+	font-size: 1.3rem;
+}
+
+.txt-carrinho-qtde{
+	font-size: 1.3rem;
+}
+.txt-carrinho-preco{
+	font-size: 1.8rem;
+}
+
+.border-bottom{
+	border-bottom: solid 1px #eee;
+	padding-top: 10px;
+}
+
+
 @media screen and (max-width: 767px) {
   	.no-mobile{
   		display: none !important;

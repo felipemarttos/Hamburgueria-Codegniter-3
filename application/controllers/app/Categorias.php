@@ -8,8 +8,12 @@ class Categorias extends CI_Controller {
         if (!isset($logged) || $logged != true) {
             redirect(base_url('/app/login/index'));
         }
+         $this->load->model('categoria');
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA LISTAGEM DAS CATEGORIAS
+    **
+    */
     public function index()
     {
         $dados["active"] = "categorias";
@@ -20,6 +24,11 @@ class Categorias extends CI_Controller {
         $this->load->view('app/categorias/index', $dados);
         $this->load->view('layout/app/footer');
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE CADASTRO DAS CATEGORIAS
+    **
+    */
     public function add()
     {
         $dados["active"] = "categorias";
@@ -29,6 +38,11 @@ class Categorias extends CI_Controller {
         $this->load->view('app/categorias/add', $dados);
         $this->load->view('layout/app/footer');
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE EDIÇÃO DAS CATEGORIAS
+    **
+    */
 
     public function edit() {
 
@@ -47,90 +61,81 @@ class Categorias extends CI_Controller {
         $this->load->view('layout/app/footer');
     }
 
-    public function update() {
-        $dados["title"]  = "Editar Categoria";
-         if ($this->input->post()) {
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE EDIÇÃO DAS CATEGORIAS
+    **
+    */
 
-            $validaCamposVazios = $this->valida($this->input->post(), false);
+    public function update() {
+
+        $msg_erro       = [];
+        $msg_success    = [];  
+        $dados          = [];  
+
+        if ($this->input->post()) {
+            $dadosSave = $this->input->post();
+            $validaCamposVazios = $this->valida($dadosSave, false);
 
             if (isset($validaCamposVazios["msg"]) && count($validaCamposVazios["msg"]) > 0) {
-                $dados             = $this->input->post();
-                $dados["msg_erro"] = $validaCamposVazios["msg"];
-                $dados["title"]    = "Editar  Categoria";
-                $dados["active"]   = "categorias";
-
-                $this->load->view('layout/app/header', $dados);
-                $this->load->view('layout/app/menu', $dados);
-                $this->load->view('app/categorias/add', $dados);
-                $this->load->view('layout/app/footer');
+                $msg_erro = $validaCamposVazios["msg"];
             } else {
 
-                $dadosSave       = $this->input->post();
-                $dados           = Categoria::where('id', "=", $dadosSave["id"])->first()->toArray();
                 $validaDuplicado = Categoria::where([["nome", "=", $dadosSave["nome"]], ['id', "!=", $dadosSave["id"]]])->first();
                 if (!empty($validaDuplicado)) {
-                    $dados             = $this->input->post();
-                    $dados["msg_erro"] = ["Já existe uma Categoria cadastrada com esse nome"];
-                    $dados["title"]    = "Editar Categoria";
-                    $dados["active"]   = "categorias";
-                    $this->load->view('layout/app/header', $dados);
-                    $this->load->view('layout/app/menu', $dados);
-                    $this->load->view('app/categorias/add', $dados);
-                    $this->load->view('layout/app/footer');
-
+                    $msg_erro = ["Já existe uma Categoria cadastrada com esse nome"];
 
                 } else {
                     $update           = Categoria::find($dadosSave["id"]);
                     $update->nome     = $dadosSave["nome"];
                     $update->ordem    = $dadosSave["ordem"];
                     $update->status   = $dadosSave["status"];
-                    $response       = $update->save($dadosSave);
+                    $response       = $update->save();
                     if ($response) {
-                        $dados["msg_success"]   = ["Categoria atualizada com sucesso"];
-                        $dados["active"]        = "categorias";
-                        $dados["title"]         = "Editar Categoria";
-                        $this->load->view('layout/app/header', $dados);
-                        $this->load->view('layout/app/menu', $dados);
-                        $this->load->view('app/categorias/add', $dados);
-                        $this->load->view('layout/app/footer');
-                         redireciona(base_url("/app/categorias/index"),1);
+                        $msg_success   = ["Categoria atualizada com sucesso"];
                     }
                 }
             }
+
+            $dados                  = Categoria::where("id", "=", $dadosSave["id"])->first()->toArray();
+            $dados["active"]        = "categorias";
+            $dados["title"]         = "Editar Categoria";
+            $dados["msg_success"]   = $msg_success;
+            $dados["msg_erro"]      = $msg_erro;
+
+            $this->load->view('layout/app/header', $dados);
+            $this->load->view('layout/app/menu', $dados);
+            $this->load->view('app/categorias/add', $dados);
+            $this->load->view('layout/app/footer');
+            redireciona(base_url("/app/categorias/index"),1);
+
         } else {
             redirect('/app/categorias/index');
         }
     }
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE INSERÇÃO DAS CATEGORIAS
+    **
+    */
 
     public function create()
     {
-       
+        $msg_erro       = [];
+        $msg_success    = [];  
+        $dados          = [];  
         if ($this->input->post()) {
-
-            $validaCamposVazios = $this->valida($this->input->post());
+            $dadosSave = $this->input->post();
+            $dados    = $this->input->post();
+            $validaCamposVazios = $this->valida($dadosSave);
 
             if (isset($validaCamposVazios["msg"]) && count($validaCamposVazios["msg"]) > 0) {
-                $dados              = $this->input->post();
-                $dados["active"]    = "categorias";
-                $dados["title"]     = "Nova Categoria";
-                $dados["msg_erro"]  = $validaCamposVazios["msg"];
-                $this->load->view('layout/app/header', $dados);
-                $this->load->view('layout/app/menu', $dados);
-                $this->load->view('app/categorias/add', $dados);
-                $this->load->view('layout/app/footer');
+                $msg_erro  = $validaCamposVazios["msg"];
             } else {
 
-                $dadosSave              = $this->input->post();
                 $validaDuplicado        = Categoria::where("nome", "=", $dadosSave["nome"])->first();
+
                 if (!empty($validaDuplicado)) {
-                    $dados             = $this->input->post();
-                    $dados["msg_erro"] = ["Já existe uma Categoria cadastrado com esse nome"];
-                    $dados["active"]   = "categorias";
-                    $dados["title"]    = "Nova Categoria";
-                    $this->load->view('layout/app/header', $dados);
-                    $this->load->view('layout/app/menu', $dados);
-                    $this->load->view('app/categorias/add', $dados);
-                    $this->load->view('layout/app/footer');
+                   
+                    $msg_erro = ["Já existe uma Categoria cadastrado com esse nome"];
 
                 } else {
                     $insert           = new Categoria;
@@ -139,21 +144,30 @@ class Categorias extends CI_Controller {
                     $insert->status   = $dadosSave["status"];
                     $response         = $insert->save($dadosSave);
                     if ($response) {
-                        $dados["msg_success"]   = ["Categoria cadastrado com sucesso"];
-                        $dados["title"]         = "Nova Categoria";
-                        $dados["active"]        = "categorias";
-                        $this->load->view('layout/app/header', $dados);
-                        $this->load->view('layout/app/menu', $dados);
-                        $this->load->view('app/categorias/add', $dados);
-                        $this->load->view('layout/app/footer');
-                        redireciona(base_url("/app/categorias/index"),1);
+                        unset($dados);
+                        $msg_success   = ["Categoria cadastrado com sucesso"];
                     }
                 }
             }
+
+            $dados["active"]        = "categorias";
+            $dados["title"]         = "Nova Categoria";
+            $dados["msg_success"]   = $msg_success;
+            $dados["msg_erro"]      = $msg_erro;
+
+            $this->load->view('layout/app/header', $dados);
+            $this->load->view('layout/app/menu', $dados);
+            $this->load->view('app/categorias/add', $dados);
+            $this->load->view('layout/app/footer');
         } else {
             redirect('/app/categorias/index');
         }
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+    **
+    */
 
     public function valida($dados, $insert = true)
     {
@@ -166,6 +180,11 @@ class Categorias extends CI_Controller {
         }
         return $msg_erro;
     }
+
+    /*
+    ** METODO RESPONSAVEL POR ATIVAR E INATIVAR CATEGORIAS
+    **
+    */
 
     public function status() {
         $data['active'] = 'categorias';
@@ -189,6 +208,10 @@ class Categorias extends CI_Controller {
         }
 
     }
+    /*
+    ** METODO RESPONSAVEL POR REMOVER CATEGORIAS
+    **
+    */
 
     public function delete() {
         $data['active'] = 'categorias';

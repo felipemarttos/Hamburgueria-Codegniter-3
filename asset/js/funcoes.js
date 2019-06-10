@@ -725,3 +725,23 @@ function formata_cpf_cnpj( valor ) {
 } // formata_cpf_cnpj
 
 
+function limpa_formulario_cep(alerta) {
+  if (alerta !== undefined) {
+    alert(alerta);
+  }
+
+  inputsCEP.val('');
+}
+
+function get(url) {
+
+    $.get(url, function(result) {
+        $('.cep').val(result.cep);
+        $('.endereco').val(result.logradouro);
+        $('.bairro').val(result.bairro);
+        $('.uf').val(result.uf);
+        $('.cidade').val(result.localidade);
+        $('.numero').focus();
+    });
+}
+

@@ -8,7 +8,12 @@ class Usuarios extends CI_Controller {
         if (!isset($logged) || $logged != true) {
             redirect(base_url('/app/login/index'));
         }
+        $this->load->model('usuario');
     }
+    /*
+    ** METODO RESPONSAVEL PELA LISTAGEM DAS CATEGORIAS
+    **
+    */
     public function index()
     {
         $dados["active"] = "usuarios";
@@ -19,6 +24,11 @@ class Usuarios extends CI_Controller {
         $this->load->view('app/usuarios/index', $dados);
         $this->load->view('layout/app/footer');
     }
+      /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE CADASTRO
+    **
+    */
+
     public function add()
     {
         $dados["active"] = "usuarios";
@@ -28,7 +38,10 @@ class Usuarios extends CI_Controller {
         $this->load->view('app/usuarios/add', $dados);
         $this->load->view('layout/app/footer');
     }
-
+     /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE EDIÇÃO 
+    **
+    */
     public function edit() {
 
         $id = $this->uri->segment(4);
@@ -45,7 +58,10 @@ class Usuarios extends CI_Controller {
         $this->load->view('app/usuarios/add', $dados);
         $this->load->view('layout/app/footer');
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE EDIÇÃO
+    **
+    */
     public function update() {
         $dados["title"]  = "Editar Usuário";
          if ($this->input->post()) {
@@ -101,7 +117,10 @@ class Usuarios extends CI_Controller {
             redirect('/app/usuarios/index');
         }
     }
-
+     /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE INSERÇÃO
+    **
+    */
     public function create()
     {
        
@@ -156,7 +175,10 @@ class Usuarios extends CI_Controller {
             redirect('/app/usuarios/index');
         }
     }
-
+    /*
+    ** METODO RESPONSAVEL PELA VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+    **
+    */
     public function valida($dados, $insert = true)
     {
         $msg_erro = [];
@@ -173,7 +195,10 @@ class Usuarios extends CI_Controller {
         }
         return $msg_erro;
     }
-
+ /*
+    ** METODO RESPONSAVEL POR ATIVAR E INATIVAR 
+    **
+    */
     public function status() {
         $data['active'] = 'cadastros';
         $id = $this->uri->segment(4);
@@ -196,7 +221,10 @@ class Usuarios extends CI_Controller {
         }
 
     }
-
+  /*
+    ** METODO RESPONSAVEL POR REMOVER FORMAS
+    **
+    */
     public function delete() {
         $data['active'] = 'usuarios';
         $id = $this->uri->segment(4);

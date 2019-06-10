@@ -1,39 +1,37 @@
-<div class="row">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title"><?php echo $title;?> 
-                <span class="pull-right">
-                        <button type="button" class="btn btn-outline-secondary btn-icon-text btn-sm">
-                          <i class="mdi mdi-export btn-icon-prepend"></i>                                                    
-                          Exportar
-                        </button>
-                </span></h4>
-                <p class="card-description"></p>
-                <div class="table-responsive" id="imprimipagina">
-                    <table id="data_table" class="table table-striped table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="tac">#ID</th>
-                                <th>Nome Página</th>
-                                <th>Titulo Página</th>
-                                <th class="tac">Conteúdo</th>
-                                <th class="tac">Status</th>
-                                <th class="tac">Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($list as $key => $row) {?>
-                            <tr>
-                                <td class="py-1 tac">
-                                    <?php echo $row["id"];?>
-                                </td>
-                                <td><?php echo $row["nome_pagina"];?></td>
-                                <td><?php echo $row["titulo_pagina"];?></td>
-                                <td class="tac">
-                                    <button type="button" data-toggle="modal" DATA-TARGET="#MODAL-<?php echo $row["id"];?>" class="btn btn-warning btn-xxs"><i class="mdi mdi-magnify mdi-sm"></i> Visualizar</button>
+<div class="container container-branco">
+    <div class="panel panel-default painel-personalizado">
+        <div class="panel-body">
+            <h3 class="border-bottom"><span class="titulo-pagina"><?php echo $title;?></span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr class="titulo-th">
+                        <th class="tac">#ID</th>
+                        <th>NOME</th>
+                        <th class="tac">CONTEÚDO</th>
+                        <th class="tac">STATUS</th>
+                        <th class="tac">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        if (empty($list)) {
+                            echo '<tr><td colspan="100%" align="center">Nenhum registro encontrado.</td></tr>';
+                        } else {
+                            foreach ($list as $key => $rows) {
+                    ?>      
+                        <tr>
+                            <td class="tac"><?php echo $rows["id"];?></td>
+                            <td><?php echo $rows["nome_pagina"];?></td>
+                             <td class="tac">
+                                    <button type="button" data-toggle="modal" DATA-TARGET="#MODAL-<?php echo $rows["id"];?>" class="btn btn-warning btn-xs"><i class="fa  fa-search"></i> Visualizar</button>
 
-                                    <div class="modal fade tal" id="MODAL-<?php echo $row["id"];?>" tabindex="-1" role="dialog">
+                                    <div class="modal fade tal" id="MODAL-<?php echo $rows["id"];?>" tabindex="-1" role="dialog">
                                       <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                           <div class="modal-header tal">
@@ -41,7 +39,7 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                           </div>
                                           <div class="modal-body">
-                                            <p><?php echo $row["conteudo"];?></p>
+                                            <p><?php echo $rows["conteudo"];?></p>
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-danger btn-xxs" data-dismiss="modal">Fechar</button>
@@ -51,26 +49,24 @@
                                     </div>
 
 
-                                </td>
-                                <td class="tac">
-                                    <?php if ($row["status"] == "S") {?>
-                                        <a href="<?php echo base_url('/app/paginas/status/'.$row["id"]);?>">
-                                            <label class="badge badge-success">Ativo</label>
-                                        </a>
-                                    <?php } else {?>
-                                        <a href="<?php echo base_url('/app/paginas/status/'.$row["id"]);?>">
-                                            <label class="badge badge-danger">Inativo</label>
-                                        </a>
-                                    <?php }?>
-                                </td>
-                                <td class="tac">
-                                    <a href="<?php echo base_url('/app/paginas/editar/'.$row["id"]);?>" class="btn btn-primary btn-xxs" title="Editar"><i class="mdi mdi-file-check mdi-sm"></i></a>
-                                </td>
-                            </tr>
-                            <?php }?>        
-                        </tbody>
-                    </table>
-                </div>
+                            </td>
+                            <td class="tac">
+                             <?php  
+                                if ($rows["status"] == "A") {
+                                    echo '<a href="'.base_url('app/paginas/status/'.$rows["id"]).'" class="btn btn-success btn-xs" title="Ativo">Ativo</a>';
+                                }
+                                if (($rows["status"] == "I") || ($rows["status"] == "")) {
+                                    echo '<a href="'.base_url('app/paginas/status/'.$rows["id"]).'" class="btn btn-danger btn-xs" title="Inativo">Inativo</a>';
+                                }
+                            ?>
+                            </td>
+                            <td class="tac">
+                                <a href="<?php echo base_url('app/paginas/edit/'.$rows["id"]);?>"  class="btn btn-info btn-xs" title="Editar"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    <?php }}?>
+                </tbody>
+            </table>
             </div>
         </div>
     </div>

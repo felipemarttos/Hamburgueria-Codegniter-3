@@ -16,11 +16,13 @@
         <script src="<?php echo base_url('asset/js/DataTables/jquery.dataTables.min.js');?>">  </script>
         <script src="<?php echo base_url('asset/js/DataTables/dataTables.bootstrap.min.js');?>">  </script>
         <script src="<?php echo base_url('asset/js/select2/js/select2.full.js');?>">  </script>
+        <script src="<?php echo base_url('asset/js/tiny_mce/tiny_mce.js');?>">  </script>
+        <script src="<?php echo base_url('asset/js/editorfull.js');?>">  </script>
         <script type="text/javascript">
             var URL_BASE = '<?php echo base_url();?>';
         </script>
         <script src="<?php echo base_url('asset/js/date.js');?>">  </script>
         <script src="<?php echo base_url('asset/js/funcoes.js');?>">  </script>
-        <script src="<?php echo base_url('asset/js/comuns.js');?>">  </script>
+        <script src="<?php echo base_url('asset/js/app.js');?>">  </script>
 </body>
 </html>

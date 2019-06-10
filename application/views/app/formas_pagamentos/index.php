@@ -33,7 +33,7 @@
                     ?>      
                         <tr>
                             <td style="vertical-align: middle;" class="tac"><?php echo $rows["id"];?></td>
-                            <td style="vertical-align: middle;"><img width="50" src="<?php echo base_url('asset/img/produtos/'.$imagem);?>"alt=""></td>
+                            <td style="vertical-align: middle;"><img width="50" src="<?php echo base_url('asset/img/formas/'.$imagem);?>"alt=""></td>
                             <td style="vertical-align: middle;"><?php echo $rows["nome"];?></td>
                             <td style="vertical-align: middle;" class="tac">
                              <?php  

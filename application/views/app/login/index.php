@@ -28,11 +28,7 @@
                         <button type="submit" class="btn btn-block btn-danger btn-lg">ACESSAR</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <a href="<?php echo base_url('app/login/recuperar');?>" class="link-esqueceu">Esqueceu a senha?</a>
-                    </div>
-                </div>
+                
             <?php form_close();?>
         </div>
     </div>

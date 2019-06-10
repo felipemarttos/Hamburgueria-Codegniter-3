@@ -8,7 +8,13 @@ class FormasPagamentos extends CI_Controller {
         if (!isset($logged) || $logged != true) {
             redirect(base_url('/app/login/index'));
         }
+         $this->load->model('formaPagamento');
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA LISTAGEM DAS FORMAS
+    **
+    */
 
     public function index()
     {
@@ -20,6 +26,11 @@ class FormasPagamentos extends CI_Controller {
         $this->load->view('app/formas_pagamentos/index', $dados);
         $this->load->view('layout/app/footer');
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE CADASTRO DAS FORMAS
+    **
+    */
     public function add()
     {
         $dados["active"] = "formasPagamentos";
@@ -30,6 +41,10 @@ class FormasPagamentos extends CI_Controller {
         $this->load->view('layout/app/footer');
     }
 
+    /*
+    ** METODO RESPONSAVEL PELA CRIAÇÃO DA TELA DE EDIÇÃO DAS FORMAS
+    **
+    */
     public function edit() {
 
         $id = $this->uri->segment(4);
@@ -47,39 +62,27 @@ class FormasPagamentos extends CI_Controller {
         $this->load->view('layout/app/footer');
     }
 
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE EDIÇÃO DAS FORMAS
+    **
+    */
     public function update() {
-        $dados["title"]  = "Editar Forma";
-         if ($this->input->post()) {
 
+        $msg_erro       = [];
+        $msg_success    = [];  
+        $dados          = [];  
+         if ($this->input->post()) {
+            $dadosSave = $this->input->post();
             $validaCamposVazios = $this->valida($this->input->post(), false);
 
             if (isset($validaCamposVazios["msg"]) && count($validaCamposVazios["msg"]) > 0) {
-                $dados             = $this->input->post();
-                $dados["msg_erro"] = $validaCamposVazios["msg"];
-                $dados["title"]    = "Editar  Forma";
-                $dados["active"]   = "formasPagamentos";
-
-                $this->load->view('layout/app/header', $dados);
-                $this->load->view('layout/app/menu', $dados);
-                $this->load->view('app/formas_pagamentos/add', $dados);
-                $this->load->view('layout/app/footer');
+                $msg_erro = $validaCamposVazios["msg"];
             } else {
-
-                $dadosSave       = $this->input->post();
-                $dados           = FormaPagamento::where('id', "=", $dadosSave["id"])->first()->toArray();
                 $validaDuplicado = FormaPagamento::where([["nome", "=", $dadosSave["nome"]], ['id', "!=", $dadosSave["id"]]])->first();
                 if (!empty($validaDuplicado)) {
-                    $dados             = $this->input->post();
-                    $dados["msg_erro"] = ["Já existe um Forma cadastrado com esse nome"];
-                    $dados["title"]    = "Editar Forma";
-                    $dados["active"]   = "formasPagamentos";
-                    $this->load->view('layout/app/header', $dados);
-                    $this->load->view('layout/app/menu', $dados);
-                    $this->load->view('app/formas_pagamentos/add', $dados);
-                    $this->load->view('layout/app/footer');
-
-
+                    $msg_erro = ["Já existe um Forma cadastrado com esse nome"];
                 } else {
+
                     $update           = FormaPagamento::find($dadosSave["id"]);
                     $update->nome     = $dadosSave["nome"];
                     $update->status   = $dadosSave["status"];
@@ -88,52 +91,47 @@ class FormasPagamentos extends CI_Controller {
                     }
                     $response         = $update->save($dadosSave);
                     if ($response) {
-                        $dados["msg_success"]   = ["Forma atualizado com sucesso"];
-                        $dados["active"]        = "formasPagamentos";
-                        $dados["title"]         = "Editar Forma";
-                        $this->load->view('layout/app/header', $dados);
-                        $this->load->view('layout/app/menu', $dados);
-                        $this->load->view('app/formas_pagamentos/add', $dados);
-                        $this->load->view('layout/app/footer');
-                         redireciona(base_url("/app/formasPagamentos/index"),1);
+                        $msg_success   = ["Forma atualizado com sucesso"];
                     }
                 }
             }
+            $dados                  = FormaPagamento::where("id", "=", $dadosSave["id"])->first()->toArray();
+            $dados["active"]        = "formasPagamentos";
+            $dados["title"]         = "Editar Forma";
+            $dados["msg_success"]   = $msg_success;
+            $dados["msg_erro"]      = $msg_erro;
+            $this->load->view('layout/app/header', $dados);
+            $this->load->view('layout/app/menu', $dados);
+            $this->load->view('app/formas_pagamentos/add', $dados);
+            $this->load->view('layout/app/footer');
+            redireciona(base_url("/app/formasPagamentos/index"),1);
         } else {
             redirect('/app/formasPagamentos/index');
         }
     }
 
+    /*
+    ** METODO RESPONSAVEL PELA GRAVAÇÃO DE INSERÇÃO DAS FORMAS
+    **
+    */
+
     public function create()
     {
-       
+        $msg_erro       = [];
+        $msg_success    = [];  
+        $dados          = []; 
         if ($this->input->post()) {
-
-            $validaCamposVazios = $this->valida($this->input->post());
+            $dadosSave = $this->input->post();
+            $dados    = $this->input->post();
+            $validaCamposVazios = $this->valida($dadosSave);
 
             if (isset($validaCamposVazios["msg"]) && count($validaCamposVazios["msg"]) > 0) {
-                $dados              = $this->input->post();
-                $dados["active"]    = "formasPagamentos";
-                $dados["title"]     = "Nova Forma";
-                $dados["msg_erro"]  = $validaCamposVazios["msg"];
-                $this->load->view('layout/app/header', $dados);
-                $this->load->view('layout/app/menu', $dados);
-                $this->load->view('app/formas_pagamentos/add', $dados);
-                $this->load->view('layout/app/footer');
+                $msg_erro  = $validaCamposVazios["msg"];
             } else {
 
-                $dadosSave              = $this->input->post();
                 $validaDuplicado        = FormaPagamento::where("nome", "=", $dadosSave["nome"])->first();
                 if (!empty($validaDuplicado)) {
-                    $dados             = $this->input->post();
-                    $dados["msg_erro"] = ["Já existe um Forma cadastrado com esse nome"];
-                    $dados["active"]   = "formasPagamentos";
-                    $dados["title"]    = "Nova Forma";
-                    $this->load->view('layout/app/header', $dados);
-                    $this->load->view('layout/app/menu', $dados);
-                    $this->load->view('app/formas_pagamentos/add', $dados);
-                    $this->load->view('layout/app/footer');
-
+                    $msg_erro = ["Já existe um Forma cadastrado com esse nome"];
                 } else {
                     $insert           = new FormaPagamento;
                     $insert->nome     = $dadosSave["nome"];
@@ -143,21 +141,30 @@ class FormasPagamentos extends CI_Controller {
                     }
                     $response         = $insert->save($dadosSave);
                     if ($response) {
-                        $dados["msg_success"]   = ["Forma cadastrada com sucesso"];
-                        $dados["title"]         = "Nova Forma";
-                        $dados["active"]        = "formasPagamentos";
-                        $this->load->view('layout/app/header', $dados);
-                        $this->load->view('layout/app/menu', $dados);
-                        $this->load->view('app/formas_pagamentos/add', $dados);
-                        $this->load->view('layout/app/footer');
-                        redireciona(base_url("/app/formasPagamentos/index"),1);
+                        unset($dados);
+                        $msg_success   = ["Forma cadastrada com sucesso"];
                     }
                 }
             }
+
+            $dados["title"]         = "Nova Forma";
+            $dados["active"]        = "formasPagamentos";
+            $dados["msg_success"]   = $msg_success;
+            $dados["msg_erro"]      = $msg_erro;
+            $this->load->view('layout/app/header', $dados);
+            $this->load->view('layout/app/menu', $dados);
+            $this->load->view('app/formas_pagamentos/add', $dados);
+            $this->load->view('layout/app/footer');
+
         } else {
             redirect('/app/formasPagamentos/index');
         }
     }
+
+    /*
+    ** METODO RESPONSAVEL PELA VALIDAÇÃO DE CAMPOS OBRIGATÓRIOS
+    **
+    */
 
     public function valida($dados, $insert = true)
     {
@@ -167,6 +174,11 @@ class FormasPagamentos extends CI_Controller {
         }
         return $msg_erro;
     }
+
+    /*
+    ** METODO RESPONSAVEL POR ATIVAR E INATIVAR FORMAS
+    **
+    */
 
     public function status() {
         $data['active'] = 'formasPagamentos';
@@ -190,6 +202,10 @@ class FormasPagamentos extends CI_Controller {
         }
 
     }
+    /*
+    ** METODO RESPONSAVEL POR REMOVER FORMAS
+    **
+    */
 
     public function delete() {
         $data['active'] = 'formasPagamentos';
@@ -207,6 +223,10 @@ class FormasPagamentos extends CI_Controller {
         }
 
     }
+    /*
+    ** METODO RESPONSAVEL POR FAZER O UPLOAD DA IMAGEM PARA SERVIDOR
+    **
+    */
 
     public function uploadFoto() {
         $pasta = 'asset/img/formas/';

@@ -82,7 +82,7 @@
                     <?php if (isset($id) && $id > 0 && strlen($imagem) > 0) {?>
                     <div class="col-md-12">
                         <label>Foto Atual</label><br>
-                        <img style="border:solid 2px #cccccc;" width="100" height="80" src="<?php echo base_url('asset/img/formas/'.$imagem);?>" alt="image" />
+                        <img style="border:solid 2px #cccccc;" width="100" height="80" src="<?php echo base_url('asset/img/produtos/'.$imagem);?>" alt="image" />
                     </div>
                     <?php }?>
                 </div>

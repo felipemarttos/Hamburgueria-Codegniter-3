@@ -7,7 +7,7 @@ $config['smtp_user']    = 'noreply2@onsistemas.com.br';
 $config['smtp_pass']    = 'WDB1zXuwAVDA';
 //$config['smtp_crypto']  = 'tls';
 $config['smtp_port']    = 587;
-$config['validate']  = TRUE;
+//$config['validate']     = TRUE;
 
 
 /*$config['smtp_host'] = 'ssl://smtp.gmail.com';
